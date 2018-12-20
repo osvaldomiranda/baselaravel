@@ -9,9 +9,10 @@ import Vue from 'vue'
 import Vuetify from 'vuetify'
 import Vuex from 'vuex'
 import VueRouter from 'vue-router'
-import AppComponent from './components/AppComponent'
- 
+import App from './views/App'
 
+
+ 
 Vue.use(Vuetify, {
   theme: {
 
@@ -26,9 +27,13 @@ Vue.use(Vuetify, {
   }
 })
 
-
 Vue.use(Vuex)
-Vue.use(VueRouter)
+
+
+window.axios = require('axios');
+window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
+Vue.prototype.$http = window.axios
+
 
 /**
  * The following block of code may be used to automatically register your
@@ -41,7 +46,9 @@ Vue.use(VueRouter)
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key)))
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
+
+
+import routes from './routes'
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -49,7 +56,15 @@ Vue.component('example-component', require('./components/ExampleComponent.vue'))
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+Vue.use(VueRouter)
+
+
 const app = new Vue({
-    el: '#App',
-    render: h => h(AppComponent)
+    el: '#app',
+    components: { App },
+    router: routes
 });
+
+
+
+
