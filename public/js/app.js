@@ -39345,7 +39345,7 @@ var render = function() {
                 }),
                 _vm._v(" "),
                 _c("span", { staticClass: "hidden-md-and-down" }, [
-                  _vm._v("AtacamaScope")
+                  _vm._v("AppName")
                 ])
               ],
               1
